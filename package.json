@@ -1,0 +1,26 @@
+{
+  "name": "learnjs",
+  "version": "1.0.0",
+  "description": "Bat dau hoc nodeJS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duyanha37/Learn-NodeJS.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "DuyAnh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Duyanha37/Learn-NodeJS/issues"
+  },
+  "homepage": "https://github.com/Duyanha37/Learn-NodeJS#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
