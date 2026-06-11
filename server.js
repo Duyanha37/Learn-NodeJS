@@ -14,13 +14,31 @@ dotenv.config() //Load environment variables from .env file
 app.use(express.static(path.join(__dirname, 'src', 'public'))) //Serve static files from the 'public' directory (Gán cho hệ thống biết đây là file static có thể truy cập trực tiếp)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.json({ message: 'Hello World!!' }) //Send a JSON response with the message "Hello World!" when the root route is accessed
 })
 
-app.get('/DA', (req, res) => {
-  res.render('home.ejs') //Render the 'home.ejs' template when the '/DA' route is accessed;
+app.get('/user', (req, res) => {
+  res.json({ name: 'DuyAnh', age: 20 }) //Send a JSON response with user information when the '/user' route is accessed
+}) 
+
+app.get('/sum', (req, res) => {
+  var a = 5
+  var b = 10
+  res.json({ result: a + b })
+})
+
+app.get('/user/:id', (req, res) => {
+  res.json({ id: req.params.id })
+})
+
+app.get('/user/:id/:name', (req, res) => {
+  res.json({ id: req.params.id, name: req.params.name })
+})
+
+app.get('/query/name', (req, res) => {
+  res.json(req.query)
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Server is running on port ${port}`) //Start the server and log a message indicating that it is running and on which port
 })
