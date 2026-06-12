@@ -65,6 +65,24 @@ app.get('/todos', (req, res) => {
   res.json(todos)
 })
 
+app.delete('/todos/:id', (req, res) => {
+  const id = req.params.id
+  for (let i = 0; i < todos.length; i++) {
+    if (todos[i].id == id) {
+      todos.splice(i, 1)
+      console.log(todos)
+      
+      return res.json({
+        message: 'Todo deleted successfully'
+      })
+      
+    }
+  }
+  return res.json({
+    message: 'Todo not found'
+  })
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`) //Start the server and log a message indicating that it is running and on which port
 })
