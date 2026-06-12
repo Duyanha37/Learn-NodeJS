@@ -39,6 +39,32 @@ app.get('/query/name', (req, res) => {
   res.json(req.query)
 })
 
+app.use(express.json()) //Middleware to parse JSON request bodies, allowing the server to handle incoming JSON data in POST requests
+
+app.post('/login', (req, res) => {
+
+  console.log(req.body)
+
+  res.json({ 
+    message: 'Login successful'
+  }) 
+})
+
+const todos = [] //Array todos
+
+app.post('/todos', (req, res) => {
+  console.log(req.body)
+  todos.push(req.body)
+
+  res.json({
+    message: 'Todo created successfully'
+  })
+})
+
+app.get('/todos', (req, res) => {
+  res.json(todos)
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`) //Start the server and log a message indicating that it is running and on which port
 })
