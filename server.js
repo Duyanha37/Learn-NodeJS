@@ -52,7 +52,15 @@ app.post('/login', (req, res) => {
 
 const todos = [] //Array todos
 
-app.post('/todos', (req, res) => {
+//Middleware
+const todo = (req, res, next) => {
+  if (req.body.title == undefined) {
+    return res.send('Title is required')
+  }
+  next()
+}
+
+app.post('/todos', todo, (req, res) => {
   console.log(req.body)
   todos.push(req.body)
 
@@ -116,6 +124,8 @@ app.patch('/todos/:id', (req, res) => {
     message: 'Todo not found'
   })
 })
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`) //Start the server and log a message indicating that it is running and on which port
