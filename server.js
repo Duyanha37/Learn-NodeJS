@@ -53,77 +53,9 @@ app.post('/login', (req, res) => {
 const todos = [] //Array todos
 
 //Middleware
-const todo = (req, res, next) => {
-  if (req.body.title == undefined) {
-    return res.send('Title is required')
-  }
-  next()
-}
 
-app.post('/todos', todo, (req, res) => {
-  console.log(req.body)
-  todos.push(req.body)
 
-  res.json({
-    message: 'Todo created successfully'
-  })
-})
 
-app.get('/todos', (req, res) => {
-  res.json(todos)
-})
-
-app.delete('/todos/:id', (req, res) => {
-  const id = req.params.id
-  for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id == id) {
-      todos.splice(i, 1)
-      console.log(todos)
-      
-      return res.json({
-        message: 'Todo deleted successfully'
-      })
-      
-    }
-  }
-  return res.json({
-    message: 'Todo not found'
-  })
-})
-
-app.put('/todos/:id', (req, res) => {
-  const id = req.params.id
-  for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id == id) {
-      todos[i] = req.body
-      console.log(todos)
-      return res.json({
-        message: 'Todo updated successfully'
-      })
-    }
-  }
-  return res.json({
-    message: 'Todo not found'
-  })
-})
-
-app.patch('/todos/:id', (req, res) => {
-  const id = req.params.id
-  for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id == id) {
-      for (let k in req.body) {
-        todos[i][k] = req.body[k]
-      }
-      console.log(todos)
-      return res.json({
-        message: 'Todo updated successfully'
-      })
-    }
-  }
-  return res.json({
-    message: 'Todo not found'
-  })
-})
 
 
 
